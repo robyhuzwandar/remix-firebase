@@ -14,7 +14,7 @@ export const addTodo = (todo:TTodo)=>{
 
 export const deleteAll = ()=>{
   remove(ref(database, 'todo/')).catch((error)=>{
-    console.error('SET ERROR: ',error)
+    console.error('DELETE ERROR: ',error)
   });
 }
 
