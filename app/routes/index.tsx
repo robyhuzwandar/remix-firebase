@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import type { ActionFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { addTodo } from "~/service/todo";
 import { Form, useNavigate } from "@remix-run/react";
@@ -15,7 +16,7 @@ export const action: ActionFunction = async ({ request }) => {
     createdAt: Date.now(),
   });
 
-  return redirect(`/`);
+  return redirect(`/todo-list`);
 };
 
 export default function Index() {

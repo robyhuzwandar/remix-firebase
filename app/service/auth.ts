@@ -1,12 +1,13 @@
-import type { UserCredential } from "firebase/auth";
+import type { User } from "firebase/auth";
 import { signInAnonymously } from "firebase/auth";
 import {auth} from '~/firebase.config'
 
 
-export const firebaseAnonymousSignIn =async():Promise<UserCredential | undefined>=>{
+export const firebaseAnonymousSignIn = async (): Promise<User | null> =>{
     try {
-        return signInAnonymously(auth)
+        const data = await signInAnonymously(auth)
+        return data.user;
     } catch (error) {
-        console.log(error)
+        throw `${error}`
     }
 }

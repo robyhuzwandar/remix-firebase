@@ -5,22 +5,24 @@ import { database } from "~/firebase.config";
 
 
 export const addTodo = (todo:TTodo)=>{
-    
-   set(ref(database, 'todo/' + uuidv4()), {
+  set(ref(database, 'todo/' + uuidv4()), {
     ...todo
+  }).catch((error)=>{
+    console.error(error)
   });
 }
 
-export const getTodo = (fnc: (todo:any[])=>void) => {
-  
-   const todoRef = ref(database, 'todo/')
-     onValue(todoRef, (snapshot) => {
-      var records: any[] = [];
-      snapshot.forEach((childSnapshot) => {
-        const childData = childSnapshot.val();
-        records.push(childData);
-      });
-      fnc(records);
+export const getTodo = (callback: (todo:any[])=>void) => {
+  const todoRef = ref(database, 'todo/')
+  onValue(todoRef, (snapshot) => {
+    var records: any[] = [];
+    snapshot.forEach((childSnapshot) => {
+      const childData = childSnapshot.val();
+      records.push(childData);
     });
+    callback(records);
+  }, (error) => {
+    console.log('ON VALUE ERROR: ',error)
+  });
 }
 
