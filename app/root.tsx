@@ -9,9 +9,6 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import styles from "./styles/app.css";
-import { firebaseAnonymousSignIn } from "./service/auth";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase.config";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -24,18 +21,6 @@ export function links() {
 }
 
 export default function App() {
-  React.useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        console.log("[LOGGED IN] CURRENT USER : ", user.uid);
-      } else {
-        const user = await firebaseAnonymousSignIn();
-        console.log("NEW USER : ", user?.uid);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
   return (
     <html lang="en">
       <head>

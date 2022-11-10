@@ -8,11 +8,11 @@ export const addTodo = (todo:TTodo)=>{
   set(ref(database, 'todo/' + uuidv4()), {
     ...todo
   }).catch((error)=>{
-    console.error(error)
+    console.error('SET ERROR: ',error)
   });
 }
 
-export const getTodo = (callback: (todo:any[])=>void) => {
+export const getTodo = (callback: (todo: TTodo[])=>void) => {
   const todoRef = ref(database, 'todo/')
   onValue(todoRef, (snapshot) => {
     var records: any[] = [];

@@ -11,3 +11,11 @@ export const firebaseAnonymousSignIn = async (): Promise<User | null> =>{
         throw `${error}`
     }
 }
+
+export const logOut = async (): Promise<void> =>{
+    try {
+        await auth.signOut()
+    } catch (error) {
+        throw `${error}`
+    }
+}

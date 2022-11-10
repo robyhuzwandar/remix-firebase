@@ -11,13 +11,13 @@ export default function TodoList() {
   }, []);
 
   return (
-    <div>
-      <div
-        onClick={() => navigate(-1)}
-        className="m-4 text-red-500 cursor-pointer"
+    <>
+      <button
+        className="border-gray-500 border rounded-md p-2 m-4"
+        onClick={() => navigate("/todo-form")}
       >
-        Back
-      </div>
+        Go to form
+      </button>
       {todos.map((todo, index) => {
         return (
           <div key={index.toString()} className="m-4 p-2 border rounded-md">
@@ -26,6 +26,6 @@ export default function TodoList() {
           </div>
         );
       })}
-    </div>
+    </>
   );
 }
