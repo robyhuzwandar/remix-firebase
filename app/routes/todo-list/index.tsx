@@ -1,6 +1,6 @@
 import { useNavigate } from "@remix-run/react";
 import * as React from "react";
-import { getTodo } from "~/service/todo";
+import { deleteAll, getTodo } from "~/service/todo";
 
 export default function TodoList() {
   const navigate = useNavigate();
@@ -17,6 +17,18 @@ export default function TodoList() {
         onClick={() => navigate("/todo-form")}
       >
         Go to form
+      </button>
+      <button
+        className="border-gray-500 border rounded-md p-2 m-4"
+        onClick={() => navigate("/")}
+      >
+        Go to Home
+      </button>
+      <button
+        className="border-gray-500 border rounded-md p-2 m-4"
+        onClick={deleteAll}
+      >
+        Delete All Todo
       </button>
       {todos.map((todo, index) => {
         return (

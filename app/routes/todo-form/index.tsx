@@ -26,6 +26,12 @@ export default function TodoForm() {
       >
         Go to list
       </button>
+      <button
+        className="border-gray-500 border rounded-md p-2 m-4"
+        onClick={() => navigate("/")}
+      >
+        Go to Home
+      </button>
       <Form method="post" className="flex flex-col">
         <input
           placeholder="name"

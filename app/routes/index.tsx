@@ -5,6 +5,11 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "~/firebase.config";
 import { firebaseAnonymousSignIn, logOut } from "~/service/auth";
 
+export const loader = async () => {
+  await firebaseAnonymousSignIn();
+  return {};
+};
+
 export default function Index() {
   const navigate = useNavigate();
 
